@@ -1,4 +1,5 @@
 // server.js
+//Collab: Suf, Jeffery, Cory, Pedro, Oscar
 
 // set up ======================================================================
 // get all the tools we need
@@ -22,6 +23,7 @@ var db
 // configuration ===============================================================
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
+  //Jeffery Helped with this 
   db = database.db
   require('./app/routes.js')(app, passport, db);
 }); // connect to our database
