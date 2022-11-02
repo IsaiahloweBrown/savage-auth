@@ -19,10 +19,18 @@ module.exports = function(app, passport, db) {
     });
 
     // LOGOUT ==============================
-    app.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
-    });
+    // app.get('/logout', function(req, res) {
+    //     req.logout();
+    //     res.redirect('/');
+    // });
+
+
+      app.get('/logout', function(req, res, next) {
+        req.logout(function(err) {
+          if (err) { return next(err); }
+          res.redirect('/');
+        });
+      });
 
 // message board routes ===============================================================
 
@@ -57,7 +65,7 @@ module.exports = function(app, passport, db) {
           
         }
       }, {
-        //sorts descending 
+        //sorts descending
         sort: {_id: -1},
         upsert: true
       }, (err, result) => {
